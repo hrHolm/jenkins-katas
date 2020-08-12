@@ -61,6 +61,22 @@ pipeline {
       }
     }
 
+    stage('component test') {
+      agent {
+        docker {
+          image 'gradle:jdk11'
+        }
+
+      }
+      when {
+        beforeAgent true
+        branch 'master'
+      }
+      steps {
+        sh 'ls'
+      }
+    }
+
   }
   environment {
     docker_username = 'fholm'
